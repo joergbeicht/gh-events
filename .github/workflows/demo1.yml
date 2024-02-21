@@ -1,13 +1,16 @@
 # Dies ist ein Beispiel für ein pull_request Event
 # Also muss als erstes ein Branch erstellt werden
 # >: git checkout -b feature100
-# Dann muss im Branch eine Änderung erfolgen
-# >: 
+# Dann muss im Branch eine Änderung erfolgen z.B. Update title
+# Dann alles stagen und commiten und dann den ersten Push auf das Feature mit
+# >: git push origin feature100
 # Dann den Branch pushen
 name: Events Demo 1
 on:
   # Das pull_request Event hat z.B. eine Reihe an Activity Types
   pull_request:
+    # ACTIVITY TYPES
+    # ==============
     # Activity Types & Filters geben uns mehr Möglichkeiten zu definieren welches Event welchen Workflow anstößt!
     # Wir nutzen hier im Bespiel den Activity Type opened
     # using simple or multiple or list way
@@ -21,8 +24,35 @@ on:
     #     - edited
     types:
       - opened
+    # FILTERS - das ist ein Filter den es für pull_request gibt
+    # =======  
+    branches:
+      - main # only main
+      # - dev zusätzlich den dev Branch oder
+      # - 'dev-*'   zusätzlich alle Brunches die mit dev- beginnen oder
+      #             also z.B dev-new, dev-this-...
+      # - 'feat/**' zusätzlich alle Brunches die mit feat/ beginnen oder
+      #             also feat/new feat/new/button ...  
   # ist ein zweites Event das benötigt nichts weiteres    
   workflow_dispatch:
+  push:
+    # FILTERS - das ist ein Filter den es für push gibt
+    # =======
+    # Dieser Workflow soll nur für den main Branch laufen
+    # und nicht für alle Feature Branches und das
+    # kannst du mit Filters steuern!
+    # löst diesen Workflow     
+    branches:
+      - main # only main
+      # - dev zusätzlich den dev Branch oder
+      # - 'dev-*'   zusätzlich alle Brunches die mit dev- beginnen oder
+      #             also z.B dev-new, dev-this-...
+      # - 'feat/**' zusätzlich alle Brunches die mit feat/ beginnen oder
+      #             also feat/new feat/new/button ...
+    # FILTERS - das ist ein zweiter Filter den es für push gibt und angewendet wird
+    # =======      
+    paths-ignore:
+      - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
