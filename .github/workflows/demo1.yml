@@ -1,3 +1,8 @@
+# Dies ist ein Beispiel für ein pull_request Event
+# Also muss als erstes ein Branch erstellt werden
+# >: git checkout -b feature100
+# Dann muss im Branch eine Änderung erfolgen
+# Dann den Branch pushen
 name: Events Demo 1
 on:
   # Das pull_request Event hat z.B. eine Reihe an Activity Types
