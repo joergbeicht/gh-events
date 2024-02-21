@@ -1,8 +1,21 @@
 name: Events Demo 1
 on:
+  # Das pull_request Event hat z.B. eine Reihe an Activity Types
   pull_request:
+    # Activity Types & Filters geben uns mehr Möglichkeiten zu definieren welches Event welchen Workflow anstößt!
+    # Wir nutzen hier im Bespiel den Activity Type opened
+    # using simple or multiple or list way
+    #    types:
+    #      - opened
+    # or multiple as Array
+    # types [opened, edited]
+    # or multiple as List
+    #    types:
+    #     - opened
+    #     - edited
     types:
       - opened
+  # ist ein zweites Event das benötigt nichts weiteres    
   workflow_dispatch:
 jobs:
   deploy:
